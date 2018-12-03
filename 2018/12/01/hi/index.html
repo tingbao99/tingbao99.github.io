@@ -15,17 +15,58 @@
 
 
 
-<meta name="description" content="滴滴滴滴滴  666777">
+<meta name="description" content="接收普通消息==案例：==实现将接收到的普通消息录入到数据库中。  在mysql中创建db8.tb1数据表： 12345678create database db8;create table tb1(id int unsigned primary key auto_increment,openid varchar(100) not null default &amp;apos;&amp;apos; comment">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hi">
 <meta property="og:url" content="http://yoursite.com/2018/12/01/hi/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="滴滴滴滴滴  666777">
+<meta property="og:description" content="接收普通消息==案例：==实现将接收到的普通消息录入到数据库中。  在mysql中创建db8.tb1数据表： 12345678create database db8;create table tb1(id int unsigned primary key auto_increment,openid varchar(100) not null default &amp;apos;&amp;apos; comment">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-01T12:23:38.628Z">
+<meta property="og:image" content="g:/blog/source/_posts/img/58.png">
+<meta property="og:image" content="g:/blog/source/_posts/img/59">
+<meta property="og:image" content="g:/blog/source/_posts/img/60">
+<meta property="og:image" content="g:/blog/source/_posts/img/12">
+<meta property="og:image" content="g:/blog/source/_posts/img/13">
+<meta property="og:image" content="g:/blog/source/_posts/img/14">
+<meta property="og:image" content="g:/blog/source/_posts/img/15">
+<meta property="og:image" content="g:/blog/source/_posts/img/16">
+<meta property="og:image" content="g:/blog/source/_posts/img/17">
+<meta property="og:image" content="g:/blog/source/_posts/img/18">
+<meta property="og:image" content="g:/blog/source/_posts/img/19">
+<meta property="og:image" content="g:/blog/source/_posts/img/20">
+<meta property="og:image" content="g:/blog/source/_posts/img/1">
+<meta property="og:image" content="g:/blog/source/_posts/img/2">
+<meta property="og:image" content="g:/blog/source/_posts/img/33">
+<meta property="og:image" content="g:/blog/source/_posts/img/34">
+<meta property="og:image" content="g:/blog/source/_posts/img/35">
+<meta property="og:image" content="g:/blog/source/_posts/img/21">
+<meta property="og:image" content="g:/blog/source/_posts/img/22">
+<meta property="og:image" content="g:/blog/source/_posts/img/23">
+<meta property="og:image" content="g:/blog/source/_posts/img/24">
+<meta property="og:image" content="g:/blog/source/_posts/img/25">
+<meta property="og:image" content="g:/blog/source/_posts/img/26">
+<meta property="og:image" content="g:/blog/source/_posts/img/27">
+<meta property="og:image" content="g:/blog/source/_posts/img/28">
+<meta property="og:image" content="g:/blog/source/_posts/img/29">
+<meta property="og:image" content="g:/blog/source/_posts/img/30">
+<meta property="og:image" content="g:/blog/source/_posts/img/31">
+<meta property="og:image" content="g:/blog/source/_posts/img/32">
+<meta property="og:image" content="g:/blog/source/_posts/img/3">
+<meta property="og:image" content="g:/blog/source/_posts/img/5">
+<meta property="og:image" content="g:/blog/source/_posts/img/6">
+<meta property="og:image" content="g:/blog/source/_posts/img/7">
+<meta property="og:image" content="g:/blog/source/_posts/img/8">
+<meta property="og:image" content="g:/blog/source/_posts/img/4">
+<meta property="og:image" content="g:/blog/source/_posts/img/9">
+<meta property="og:image" content="g:/blog/source/_posts/img/10">
+<meta property="og:image" content="g:/blog/source/_posts/img/36">
+<meta property="og:image" content="g:/blog/source/_posts/img/37">
+<meta property="og:image" content="g:/blog/source/_posts/img/38">
+<meta property="og:updated_time" content="2018-12-03T11:50:31.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hi">
-<meta name="twitter:description" content="滴滴滴滴滴  666777">
+<meta name="twitter:description" content="接收普通消息==案例：==实现将接收到的普通消息录入到数据库中。  在mysql中创建db8.tb1数据表： 12345678create database db8;create table tb1(id int unsigned primary key auto_increment,openid varchar(100) not null default &amp;apos;&amp;apos; comment">
+<meta name="twitter:image" content="g:/blog/source/_posts/img/58.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -293,7 +334,201 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>滴滴滴滴滴  666777</p>
+        <h3 id="接收普通消息"><a href="#接收普通消息" class="headerlink" title="接收普通消息"></a>接收普通消息</h3><p><strong>==案例：==</strong>实现将接收到的普通消息录入到数据库中。</p>
+<ol>
+<li><p>在mysql中创建db8.tb1数据表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create database db8;</span><br><span class="line"></span><br><span class="line">create table tb1(</span><br><span class="line">id int unsigned primary key auto_increment,</span><br><span class="line">openid varchar(100) not null default &apos;&apos; comment &apos;用户唯一标识openid&apos;,</span><br><span class="line">content varchar(255) not null default &apos;&apos; comment &apos;用户发送给平台的内容&apos;,</span><br><span class="line">post_date int unsigned not null default 0 comment &apos;用户发送时间&apos;</span><br><span class="line">)engine=MyISAM charset=utf8;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li><p>将day1/code/wx.php获得的信息通过PDO录入到数据库tb1表中：</p>
+<p><img src="G:/blog/source/_posts/img/58.png" alt="1543326106223"></p>
+</li>
+<li><p>测试用户发送消息后的效果：</p>
+<p><img src="G:/blog/source/_posts/img/59" alt="1543326318097"></p>
+<p>查看数据表：</p>
+<p><img src="G:/blog/source/_posts/img/60" alt="1543326318097"></p>
+</li>
+</ol>
+<h2 id="1-接入文件程序调整"><a href="#1-接入文件程序调整" class="headerlink" title="1. 接入文件程序调整"></a>1. 接入文件程序调整</h2><h3 id="构建自动判断接入程序"><a href="#构建自动判断接入程序" class="headerlink" title="构建自动判断接入程序"></a>构建自动判断接入程序</h3><ol>
+<li><p>首先在day2/code/a1.php中构建如下代码：</p>
+<p><img src="G:/blog/source/_posts/img/12" alt="1543632248344"></p>
+</li>
+<li><p>然后将微信后台的token值调整为a1.php中指定的token值，</p>
+<p>服务器配置：</p>
+<p><img src="G:/blog/source/_posts/img/13" alt="1543632306822"></p>
+<p>测试号管理：</p>
+<p><img src="G:/blog/source/_posts/img/14" alt="1543632353219"></p>
+</li>
+<li><p>然后在订阅号中进行测试：</p>
+<p><img src="G:/blog/source/_posts/img/15" alt="1543632384926"></p>
+<p>最终的效果为，我们没有手动切换方法，但是订阅号中也完成了自动回复。</p>
+</li>
+</ol>
+<h3 id="形成报文日志文件"><a href="#形成报文日志文件" class="headerlink" title="形成报文日志文件"></a>形成报文日志文件</h3><ol>
+<li><p>在day2/code/a1.php中构建一个新的方法record，负责记录报文信息：</p>
+<p><img src="G:/blog/source/_posts/img/16" alt="1543633264241"></p>
+</li>
+<li><p>然后在responseMsg方法中接收报文和回复报文的地方，调用record方法记录报文信息：</p>
+<p>接收之后记录：</p>
+<p><img src="G:/blog/source/_posts/img/17" alt="1543633314078"></p>
+<p>回复之前记录：</p>
+<p><img src="G:/blog/source/_posts/img/18" alt="1543633347132"></p>
+</li>
+<li><p>最终效果为：</p>
+<p>在订阅号中发送一条信息：</p>
+<p><img src="G:/blog/source/_posts/img/19" alt="1543633369365"></p>
+<p>观察日志文件：</p>
+<p><img src="G:/blog/source/_posts/img/20" alt="1543633393931"></p>
+<p>说明功能制作OK。</p>
+</li>
+</ol>
+<h2 id="2-接收与（被动）回复"><a href="#2-接收与（被动）回复" class="headerlink" title="2. 接收与（被动）回复"></a>2. 接收与（被动）回复</h2><p>在微信中，接收的消息被划分为6中类型，分别是：</p>
+<ul>
+<li>文本类型    关键字 text</li>
+<li>图片类型    关键字 image</li>
+<li>语音类型    关键字 voice</li>
+<li>视频类型    关键字 video</li>
+<li>地理位置类型    关键字 location</li>
+<li>链接类型    关键字 link</li>
+</ul>
+<p>首先我们需要弄明白两个问题，在公众号的使用中存在两方，一个是使用方，即用户；一个是管理方，即我们程序开发者；我们管理方想要通过程序来管理使用方，就必须要知道使用方的意图。我们知道，使用方是可以输入内容发送给公众号的，那么，管理方就可以通过接收使用方发送的信息内容，并分析判断其意图来回复使用方。</p>
+<p>在开发者技术文档中，已经明确的写出了接收与回复相关的文档内容：</p>
+<p>1）接收消息（明确给出了使用方发送给管理方的消息是什么格式，有哪些内容）</p>
+<p><img src="G:/blog/source/_posts/img/1" alt="1543461574993"></p>
+<p>2）回复消息（明确规定了管理方如果要回复使用方，应该以什么样的格式和包含哪些内容进行回复）</p>
+<p><img src="G:/blog/source/_posts/img/2" alt="1543461685338"></p>
+<h3 id="2-1-根据接收的文本信息回复文本信息"><a href="#2-1-根据接收的文本信息回复文本信息" class="headerlink" title="2.1 根据接收的文本信息回复文本信息"></a>2.1 根据接收的文本信息回复文本信息</h3><ol>
+<li><p>在day2/code/a1.php中创建一个方法responseText，实现返回文本信息，</p>
+<p><img src="G:/blog/source/_posts/img/33" alt="1543653066199"></p>
+</li>
+<li><p>然后在responseMsg方法中调用回复文本消息的方法，</p>
+<p><img src="G:/blog/source/_posts/img/34" alt="1543653183969"></p>
+</li>
+<li><p>测试效果：</p>
+<p><img src="G:/blog/source/_posts/img/35" alt="1543653204870"></p>
+</li>
+</ol>
+<h3 id="2-2-根据接收的图片信息原样回复图片信息"><a href="#2-2-根据接收的图片信息原样回复图片信息" class="headerlink" title="2.2 根据接收的图片信息原样回复图片信息"></a>2.2 根据接收的图片信息原样回复图片信息</h3><ol>
+<li><p>在day2/code/a1.php中创建一个方法responseImg，实现返回图片报文信息，</p>
+<p><img src="G:/blog/source/_posts/img/21" alt="1543636648566"></p>
+</li>
+<li><p>然后在responseMsg方法中调用回复图片消息的方法，</p>
+<p><img src="G:/blog/source/_posts/img/22" alt="1543636689564"></p>
+</li>
+<li><p>测试效果：</p>
+</li>
+</ol>
+<h3 id="2-3-根据接收的文本信息回复音乐"><a href="#2-3-根据接收的文本信息回复音乐" class="headerlink" title="2.3 根据接收的文本信息回复音乐"></a>2.3 根据接收的文本信息回复音乐</h3><ol>
+<li><p>首先在day2/code/a1.php中创建一个名为responseMusic方法，负责构建音乐的回复报文，</p>
+<p><img src="G:/blog/source/_posts/img/23" alt="1543646735610"></p>
+</li>
+<li><p>然后在responseMsg中增加判断，当用户发送包含”音乐-“的文本内容时，回复其音乐，</p>
+<p><img src="G:/blog/source/_posts/img/24" alt="1543646799525"></p>
+</li>
+<li><p>测试使用效果：</p>
+<p><img src="G:/blog/source/_posts/img/25" alt="1543646817852"></p>
+</li>
+</ol>
+<h3 id="2-4-根据接收的语音信息原样回复语音"><a href="#2-4-根据接收的语音信息原样回复语音" class="headerlink" title="2.4 根据接收的语音信息原样回复语音"></a>2.4 根据接收的语音信息原样回复语音</h3><ol>
+<li><p>首先在day2/code/a1.php中创建一个名为responseVoice方法，负责构建语音的回复报文，</p>
+<p><img src="G:/blog/source/_posts/img/26" alt="1543652805934"></p>
+</li>
+<li><p>然后在responseMsg中增加判断，当用户发送语音内容时，原样回复其语音，</p>
+<p><img src="G:/blog/source/_posts/img/27" alt="1543652853763"></p>
+</li>
+<li><p>测试使用效果：</p>
+<p><img src="G:/blog/source/_posts/img/28" alt="1543652875018"></p>
+</li>
+</ol>
+<h3 id="2-5-根据接收的地图定位回复位置的地址坐标信息"><a href="#2-5-根据接收的地图定位回复位置的地址坐标信息" class="headerlink" title="2.5 根据接收的地图定位回复位置的地址坐标信息"></a>2.5 根据接收的地图定位回复位置的地址坐标信息</h3><ol>
+<li><p>在day2/code/a1.php的responseMsg方法中构建回复地址坐标的文本信息内容，</p>
+<p><img src="G:/blog/source/_posts/img/29" alt="1543652936993"></p>
+</li>
+<li><p>测试使用效果：</p>
+<p><img src="G:/blog/source/_posts/img/30" alt="1543652955427"></p>
+</li>
+</ol>
+<h3 id="2-6-根据接收的分享链接内容回复链接信息"><a href="#2-6-根据接收的分享链接内容回复链接信息" class="headerlink" title="2.6 根据接收的分享链接内容回复链接信息"></a>2.6 根据接收的分享链接内容回复链接信息</h3><ol>
+<li><p>在day2/code/a1.php的responseMsg方法中构建回复链接地址的文本信息内容，</p>
+<p><img src="G:/blog/source/_posts/img/31" alt="1543652995166"></p>
+</li>
+<li><p>测试效果：</p>
+<p><img src="G:/blog/source/_posts/img/32" alt="1543653012490"></p>
+</li>
+</ol>
+<h2 id="3-接口调用凭据access-token"><a href="#3-接口调用凭据access-token" class="headerlink" title="3. 接口调用凭据access_token"></a>3. 接口调用凭据access_token</h2><p>access_token是公众号的全局唯一接口调用凭据，公众号调用各接口时都需使用access_token。开发者需要进行妥善保存。access_token的存储至少要保留512个字符空间。access_token的==有效期目前为2个小时==，需定时刷新，重复获取将导致上次获取的access_token失效。 </p>
+<h3 id="3-1-curl扩展"><a href="#3-1-curl扩展" class="headerlink" title="3.1 curl扩展"></a>3.1 curl扩展</h3><p>curl扩展不是PHP默认就开启的，需要先将其配置开启，才能使用。</p>
+<h4 id="3-1-1-windows下开启curl扩展"><a href="#3-1-1-windows下开启curl扩展" class="headerlink" title="3.1.1 windows下开启curl扩展"></a>3.1.1 windows下开启curl扩展</h4><p>步骤：</p>
+<ol>
+<li><p>检查php.ini中extension_dir配置项指定的目录是否正确；</p>
+</li>
+<li><p>检查extension_dir指定的目录中是否存在curl扩展文件php_curl.dll，存在则继续往下做配置；</p>
+</li>
+<li><p>然后将php.ini中curl扩展配置项开启：</p>
+<p><img src="G:/blog/source/_posts/img/3" alt="1543580961194"></p>
+</li>
+<li><p>将php根目录下的如下四个文件复制一份，拷贝到指定的目录中：</p>
+<p>复制如下文件：</p>
+<p><img src="G:/blog/source/_posts/img/5" alt="1543581112186"></p>
+<p><img src="G:/blog/source/_posts/img/6" alt="1543581125286"></p>
+<p><img src="G:/blog/source/_posts/img/7" alt="1543581140872"></p>
+<p><img src="G:/blog/source/_posts/img/8" alt="1543581152117"></p>
+<p>粘贴到如下phpinfo信息所指定的目录中：</p>
+<p><img src="G:/blog/source/_posts/img/4" alt="1543581085509"></p>
+</li>
+<li><p>重启apache，</p>
+<p><img src="G:/blog/source/_posts/img/9" alt="1543581201310"></p>
+</li>
+<li><p>再次查看phpinfo信息：</p>
+<p><img src="G:/blog/source/_posts/img/10" alt="1543581227143"></p>
+<p>能够见到上图所示的curl扩展配置项，则说明curl扩展开启成功。</p>
+</li>
+</ol>
+<h4 id="3-1-2-使用curl扩展模拟http的get请求"><a href="#3-1-2-使用curl扩展模拟http的get请求" class="headerlink" title="3.1.2 使用curl扩展模拟http的get请求"></a>3.1.2 使用curl扩展模拟http的get请求</h4><p>必备的设置项：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置请求URL地址</span></span><br><span class="line">curl_setopt($ch,CURLOPT_URL,$url);</span><br><span class="line"><span class="comment">// 不获取header头信息</span></span><br><span class="line">curl_setopt($ch,CURLOPT_HEADER,<span class="number">0</span>);</span><br><span class="line"><span class="comment">// 结果不直接返回到终端</span></span><br><span class="line">curl_setopt($ch,CURLOPT_RETURNTRANSFER,<span class="number">1</span>);</span><br><span class="line"><span class="comment">// 设置curl不进行证书的检测</span></span><br><span class="line">curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,<span class="number">0</span>);</span><br><span class="line">curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>生产环境推荐的设置项：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 超时时间 秒</span></span><br><span class="line">curl_setopt($ch,CURLOPT_TIMEOUT,<span class="number">10</span>);</span><br><span class="line"><span class="comment">// 设置请求的浏览器</span></span><br><span class="line">curl_setopt($ch,CURLOPT_USERAGENT,<span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>==案例：==</strong>实现在访问code/t1.php的同时，在t1.php中利用curl模拟get请求code/t2.php，达到同时输出t1.php和t2.php的内容。</p>
+<p>==实现：==</p>
+<ol>
+<li><p>在day2/code目录下创建t1.php程序文件，内容如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'t1.php&lt;br/&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用curl模拟get请求</span></span><br><span class="line"><span class="comment">#1. 初始化curl连接</span></span><br><span class="line">$ch = curl_init();</span><br><span class="line"></span><br><span class="line"><span class="comment">//请求的新的链接地址</span></span><br><span class="line">$url = <span class="string">'http://969m2z.natappfree.cc/t2.php?name=小风风&amp;age=18&amp;height=1.9'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#2. 设置curl选项</span></span><br><span class="line"><span class="comment">// 设置请求URL地址</span></span><br><span class="line">curl_setopt($ch,CURLOPT_URL,$url);</span><br><span class="line"><span class="comment">// 不获取header头信息</span></span><br><span class="line">curl_setopt($ch,CURLOPT_HEADER,<span class="number">0</span>);</span><br><span class="line"><span class="comment">// 结果不直接返回到终端</span></span><br><span class="line">curl_setopt($ch,CURLOPT_RETURNTRANSFER,<span class="number">1</span>);</span><br><span class="line"><span class="comment">// 设置curl不进行证书的检测</span></span><br><span class="line">curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,<span class="number">0</span>);</span><br><span class="line">curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 超时时间 秒</span></span><br><span class="line">curl_setopt($ch,CURLOPT_TIMEOUT,<span class="number">10</span>);</span><br><span class="line"><span class="comment">// 设置请求的浏览器</span></span><br><span class="line">curl_setopt($ch,CURLOPT_USERAGENT,<span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">#3. 执行curl</span></span><br><span class="line">$data = curl_exec($ch);</span><br><span class="line"></span><br><span class="line"><span class="comment">#4. 关闭curl连接</span></span><br><span class="line">curl_close($ch);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var_dump($data);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr/&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'哈哈哈哈哈，看的到我么？'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li><p>同时在day2/code目录下创建t2.php文件，代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'t2.php&lt;br/&gt;'</span>;</span><br><span class="line"></span><br><span class="line">var_dump( $_GET );</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="3">
+<li><p>测试使用效果：</p>
+<p><img src="G:/blog/source/_posts/img/36" alt="1543656866209"></p>
+</li>
+</ol>
+<h4 id="3-1-3-使用curl扩展模拟http的post请求"><a href="#3-1-3-使用curl扩展模拟http的post请求" class="headerlink" title="3.1.3 使用curl扩展模拟http的post请求"></a>3.1.3 使用curl扩展模拟http的post请求</h4><p>在实现get请求的基础上需要增加的设置项：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 发起POST请求</span></span><br><span class="line">curl_setopt($ch,CURLOPT_POST,<span class="number">1</span>);</span><br><span class="line"><span class="comment">// post发送的数据，注意http_build_query可以将$data数组数据格式化成http传输数据的格式</span></span><br><span class="line">curl_setopt($ch,CURLOPT_POSTFIELDS,http_build_query($data));</span><br></pre></td></tr></table></figure>
+<p><strong>==案例：==</strong>实现在访问code/t3.php的同时，在t1.php中利用curl模拟get请求code/t4.php，达到同时输出t1.php和t2.php的内容。</p>
+<p>==实现：==</p>
+<h4 id="3-1-4-使用curl扩展模拟http的post请求实现文件上传"><a href="#3-1-4-使用curl扩展模拟http的post请求实现文件上传" class="headerlink" title="3.1.4 使用curl扩展模拟http的post请求实现文件上传"></a>3.1.4 使用curl扩展模拟http的post请求实现文件上传</h4><p>==条件：==</p>
+<ol>
+<li>需要使用到系统类：CURLFile</li>
+<li>在实现post请求的基础，要去掉http_build_query格式化数据；</li>
+</ol>
+<p><strong>==案例：==</strong>实现在访问code/t5.php的同时，在t1.php中利用curl模拟get请求code/t6.php，达到同时输出t1.php和t2.php的内容。</p>
+<p>==实现：==</p>
+<h3 id="3-2-获取接口调用凭据access-token"><a href="#3-2-获取接口调用凭据access-token" class="headerlink" title="3.2 获取接口调用凭据access_token"></a>3.2 获取接口调用凭据access_token</h3><h2 id="9-全天总结"><a href="#9-全天总结" class="headerlink" title="9. 全天总结"></a>9. 全天总结</h2><ol>
+<li><p>接收消息与被动回复；</p>
+<p><img src="G:/blog/source/_posts/img/37" alt="1543657173246"></p>
+<p><img src="G:/blog/source/_posts/img/38" alt="1543657235250"></p>
+</li>
+<li><p>什么是curl：就是一个PHP的扩展</p>
+</li>
+<li><p>curl能干什么：模拟http请求（get请求）</p>
+</li>
+<li><p>access_token是什么 ：公众号调用各接口时都需的一个凭据</p>
+</li>
+</ol>
 
       
     </div>
@@ -305,7 +540,7 @@
         <p><span>本文标题:</span><a href="/2018/12/01/hi/">hi</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">John Doe</a></p>
         <p><span>发布时间:</span>2018-12-01, 19:58:25</p>
-        <p><span>最后更新:</span>2018-12-01, 20:23:38</p>
+        <p><span>最后更新:</span>2018-12-03, 19:50:31</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/12/01/hi/" title="hi">http://yoursite.com/2018/12/01/hi/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/12/01/hi/　　作者: John Doe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -318,26 +553,15 @@
 
 
 
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/12/01/微信开发/">
-                    
-                </a>
-            </div>
-        
-        
-    </nav>
-
   
 </article>
 
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#接收普通消息"><span class="toc-number">1.</span> <span class="toc-text">接收普通消息</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#1-接入文件程序调整"><span class="toc-number"></span> <span class="toc-text">1. 接入文件程序调整</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构建自动判断接入程序"><span class="toc-number">1.</span> <span class="toc-text">构建自动判断接入程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#形成报文日志文件"><span class="toc-number">2.</span> <span class="toc-text">形成报文日志文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-接收与（被动）回复"><span class="toc-number"></span> <span class="toc-text">2. 接收与（被动）回复</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-根据接收的文本信息回复文本信息"><span class="toc-number">1.</span> <span class="toc-text">2.1 根据接收的文本信息回复文本信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-根据接收的图片信息原样回复图片信息"><span class="toc-number">2.</span> <span class="toc-text">2.2 根据接收的图片信息原样回复图片信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-根据接收的文本信息回复音乐"><span class="toc-number">3.</span> <span class="toc-text">2.3 根据接收的文本信息回复音乐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-根据接收的语音信息原样回复语音"><span class="toc-number">4.</span> <span class="toc-text">2.4 根据接收的语音信息原样回复语音</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-根据接收的地图定位回复位置的地址坐标信息"><span class="toc-number">5.</span> <span class="toc-text">2.5 根据接收的地图定位回复位置的地址坐标信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-根据接收的分享链接内容回复链接信息"><span class="toc-number">6.</span> <span class="toc-text">2.6 根据接收的分享链接内容回复链接信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-接口调用凭据access-token"><span class="toc-number"></span> <span class="toc-text">3. 接口调用凭据access_token</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-curl扩展"><span class="toc-number">1.</span> <span class="toc-text">3.1 curl扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-windows下开启curl扩展"><span class="toc-number">1.1.</span> <span class="toc-text">3.1.1 windows下开启curl扩展</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-使用curl扩展模拟http的get请求"><span class="toc-number">1.2.</span> <span class="toc-text">3.1.2 使用curl扩展模拟http的get请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-3-使用curl扩展模拟http的post请求"><span class="toc-number">1.3.</span> <span class="toc-text">3.1.3 使用curl扩展模拟http的post请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-4-使用curl扩展模拟http的post请求实现文件上传"><span class="toc-number">1.4.</span> <span class="toc-text">3.1.4 使用curl扩展模拟http的post请求实现文件上传</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-获取接口调用凭据access-token"><span class="toc-number">2.</span> <span class="toc-text">3.2 获取接口调用凭据access_token</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-全天总结"><span class="toc-number"></span> <span class="toc-text">9. 全天总结</span></a>
         
-    </div>
+    </li></div>
     <style>
         .left-col .switch-btn,
         .left-col .switch-area {
@@ -410,9 +634,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/12/01/微信开发/" title="上一篇: ">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -422,7 +644,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/12/01/微信开发/">微信开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/01/hi/">hi</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/12/01/hi/">hi</a></li></ul>
 
 
 
